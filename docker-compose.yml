@@ -1,0 +1,52 @@
+version: "3.7"
+services:
+    db:
+        build: ./db
+        container_name: db
+        ports:
+            - "3306:3306"
+        volumes: 
+            - data:/var/lib/mysql
+        env_file: 
+            - env/db.env
+        networks:
+            website_network:
+                aliases: 
+                    - wordpress
+    wordpress:
+        build: .
+        container_name: wordpress
+        ports:
+            - "80"
+        networks:
+            website_network:
+                aliases: 
+                    - wordpress
+        env_file: 
+            - env/wordpress.env
+        volumes:
+            - wordpress:/var/www/html
+    nginx:
+        build: ./nginx
+        container_name: nginx
+        ports:
+            - "443:443"
+            - "80"
+        networks:
+            website_network:
+                aliases: 
+                    - nginx-proxy
+    cloudflare:
+        build: ./cloudflare
+        container_name: cloudflare
+        restart: always
+        env_file: 
+            - env/cloudflare.env
+networks: 
+    website_network:
+        name: website_network
+volumes: 
+    data:
+        driver: local
+        name: data
+    wordpress:
