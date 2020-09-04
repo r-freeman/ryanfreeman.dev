@@ -14,7 +14,7 @@ services:
                 aliases: 
                     - wordpress
     wordpress:
-        build: .
+        build: ./wordpress
         container_name: wordpress
         ports:
             - "80"
@@ -26,6 +26,15 @@ services:
             - env/wordpress.env
         volumes:
             - wordpress:/var/www/html
+    node:
+        build: ./node
+        container_name: node
+        ports: 
+            - "80"
+        networks: 
+            website_network:
+                aliases: 
+                    - node
     nginx:
         build: ./nginx
         container_name: nginx
