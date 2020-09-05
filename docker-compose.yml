@@ -26,18 +26,19 @@ services:
             - env/wordpress.env
         volumes:
             - wordpress:/var/www/html
-    node:
-        build: ./node
-        container_name: node
+    nuxt:
+        build: ./nuxt
+        container_name: nuxt
         ports: 
-            - "80"
+            - "3000"
         networks: 
             website_network:
                 aliases: 
-                    - node
+                    - nuxt
     nginx:
         build: ./nginx
         container_name: nginx
+        depends_on: ["nuxt"]
         ports:
             - "443:443"
             - "80"
