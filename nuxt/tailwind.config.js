@@ -5,9 +5,23 @@
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
 module.exports = {
-    theme: {},
-    variants: {},
-    plugins: [],
+    theme: {
+        darkSelector: '.dark-mode'
+    },
+    variants: {
+        backgroundColor: [
+            "dark",
+            "dark-hover",
+            "dark-group-hover",
+            "dark-even",
+            "dark-odd"
+        ],
+        borderColor: ["dark", "dark-focus", "dark-focus-within"],
+        textColor: ["dark", "dark-hover", "dark-active"]
+    },
+    plugins: [
+        require('tailwindcss-dark-mode')()
+    ],
     purge: {
         // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
         enabled: process.env.NODE_ENV === 'production',
@@ -17,7 +31,8 @@ module.exports = {
             'pages/**/*.vue',
             'plugins/**/*.js',
             'nuxt.config.js'
-        ]
+        ],
+        whitelist: ['dark-mode']
     },
     future: {
         removeDeprecatedGapUtilities: true,
