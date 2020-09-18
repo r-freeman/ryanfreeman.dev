@@ -2,30 +2,7 @@
     <div class="lg:w-2/3">
         <main class="p-10">
             <h1 class="font-sans font-semibold text-4xl mb-8">{{ category.name }}</h1>
-            <article v-for="post in posts" :key="post.id" class="post mb-8">
-                <div class="inline-flex mb-2">
-                    <time
-                        class="datetime uppercase font-sans font-semibold text-sm mr-2"
-                        :datetime="$dayjs(post.date).format('YYYY-MM-DD')"
-                    >{{ $dayjs(post.date).format('MMMM YYYY') }}</time>
-                    <p class="category uppercase font-sans font-semibold text-sm text-blueribbon">
-                        <nuxt-link
-                            :to="`categories/${post.categories[0].slug}`"
-                        >{{ post.categories[0].name }}</nuxt-link>
-                    </p>
-                </div>
-                <h2 class="title text-2xl leading-9 font-sans font-semibold mb-3 antialiased">
-                    <nuxt-link
-                        class="hover:underline"
-                        :to="`posts/${post.slug}`"
-                        v-html="post.title.rendered"
-                    ></nuxt-link>
-                </h2>
-                <div class="summary text-base font-sans my-5" v-html="post.excerpt.rendered"></div>
-                <p class="readmore text-base font-sans text-blueribbon">
-                    <nuxt-link class="hover:underline" :to="`posts/${post.slug}`">Read &rarr;</nuxt-link>
-                </p>
-            </article>
+            <Post v-for="post in posts" :key="post.id" :post="post" :show-category="false" />
         </main>
     </div>
 </template>

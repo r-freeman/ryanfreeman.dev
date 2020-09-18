@@ -11,7 +11,8 @@ module.exports = {
         },
         extend: {
             colors: {
-                'blueribbon': '#0053F8'
+                'blueribbon': '#0053F8',
+                'mineshaft': '#222222'
             }
         }
     },
