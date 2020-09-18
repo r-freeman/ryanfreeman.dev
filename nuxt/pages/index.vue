@@ -1,81 +1,51 @@
 <template>
-    <div class="container dark:bg-black">
-        <div>
-            <Logo/>
-            <h1 class="title">
-                nuxt
-            </h1>
-            <div class="links">
-                <a
-                        href="https://nuxtjs.org/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="button--green"
-                >
-                    Documentation
-                </a>
-                <a
-                        href="https://github.com/nuxt/nuxt.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="button--grey"
-                >
-                    GitHub
-                </a>
-            </div>
-        </div>
+    <div class="lg:w-2/3">
+        <main class="p-10">
+            <article v-for="post in posts" :key="post.id" class="post mb-8">
+                <div class="inline-flex mb-2">
+                    <time
+                        class="datetime uppercase font-sans font-semibold text-sm mr-2"
+                        :datetime="$dayjs(post.date).format('YYYY-MM-DD')"
+                    >{{ $dayjs(post.date).format('MMMM YYYY') }}</time>
+                    <p class="category uppercase font-sans font-semibold text-sm text-blueribbon">
+                        <nuxt-link
+                            :to="`categories/${post.categories[0].slug}`"
+                        >{{ post.categories[0].name }}</nuxt-link>
+                    </p>
+                </div>
+                <h2 class="title text-2xl leading-9 font-sans font-semibold mb-3 antialiased">
+                    <nuxt-link
+                        class="hover:underline"
+                        :to="`posts/${post.slug}`"
+                        v-html="post.title.rendered"
+                    ></nuxt-link>
+                </h2>
+                <div class="summary text-base font-sans my-5" v-html="post.excerpt.rendered"></div>
+                <p class="readmore text-base font-sans text-blueribbon">
+                    <nuxt-link class="hover:underline" :to="`posts/${post.slug}`">Read &rarr;</nuxt-link>
+                </p>
+            </article>
+        </main>
     </div>
 </template>
 
 <script>
-    export default {
-        created() {
-            this.$store.dispatch("getPosts");
-        }
-    }
+export default {
+    head() {
+        return {
+            meta: [
+                {
+                    name: "description",
+                    content: this.$store.state.wp.author.description,
+                    hid: "description",
+                },
+            ],
+        };
+    },
+    computed: {
+        posts() {
+            return this.$store.state.wp.posts;
+        },
+    },
+};
 </script>
-
-<style>
-    /* Sample `apply` at-rules with Tailwind CSS
-    .container {
-    @apply min-h-screen flex justify-center items-center text-center mx-auto;
-    }
-    */
-    .container {
-        margin: 0 auto;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-
-    .title {
-        font-family: 'Quicksand',
-        'Source Sans Pro',
-        -apple-system,
-        BlinkMacSystemFont,
-        'Segoe UI',
-        Roboto,
-        'Helvetica Neue',
-        Arial,
-        sans-serif;
-        display: block;
-        font-weight: 300;
-        font-size: 100px;
-        color: #35495e;
-        letter-spacing: 1px;
-    }
-
-    .subtitle {
-        font-weight: 300;
-        font-size: 42px;
-        color: #526488;
-        word-spacing: 5px;
-        padding-bottom: 15px;
-    }
-
-    .links {
-        padding-top: 15px;
-    }
-</style>
