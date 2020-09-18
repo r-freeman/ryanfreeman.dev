@@ -4,7 +4,7 @@
             <time
                 class="datetime uppercase font-sans font-semibold text-sm text-mineshaft mr-2"
                 :datetime="$dayjs(post.date).format('YYYY-MM-DD')"
-            >{{ $dayjs(post.date).format('MMMM YYYY') }}</time>
+            >{{ $dayjs().to(post.date) }}</time>
             <p
                 v-if="showCategory"
                 class="category uppercase font-sans font-semibold text-sm text-blueribbon"
