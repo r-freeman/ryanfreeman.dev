@@ -15,15 +15,11 @@
             </p>
         </div>
         <h2 class="title text-2xl leading-9 font-sans font-semibold mb-3 antialiased">
-            <nuxt-link
-                class="hover:underline"
-                :to="`posts/${post.slug}`"
-                v-html="post.title.rendered"
-            ></nuxt-link>
+            <nuxt-link :to="`posts/${post.slug}`" v-html="post.title.rendered"></nuxt-link>
         </h2>
         <div class="summary text-base font-sans my-5" v-html="post.excerpt.rendered"></div>
         <p class="readmore text-base font-sans text-blueribbon">
-            <nuxt-link class="hover:underline" :to="`posts/${post.slug}`">Read &rarr;</nuxt-link>
+            <nuxt-link :to="`posts/${post.slug}`">Read &rarr;</nuxt-link>
         </p>
     </article>
 </template>
@@ -43,3 +39,17 @@ export default {
     },
 };
 </script>
+
+<style>
+.title a {
+    &:hover {
+        @apply border-b-2 border-black;
+    }
+}
+
+.readmore a {
+    &:hover {
+        @apply border-b border-blueribbon;
+    }
+}
+</style>

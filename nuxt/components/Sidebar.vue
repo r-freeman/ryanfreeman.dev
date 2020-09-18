@@ -82,11 +82,15 @@
 
 .pages li a {
     &:hover {
-        @apply text-blueribbon underline;
+        @apply text-blueribbon border-b border-blueribbon;
     }
 
-    &.nuxt-link-active {
-        @apply underline;
+    &.nuxt-link-exact-active {
+        @apply border-b border-black;
+
+        &:hover {
+            @apply text-blueribbon border-b border-blueribbon;
+        }
     }
 }
 
