@@ -9,13 +9,15 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/dayjs": "^1.1.9",
+    "@nuxtjs/feed": "^2.0.0",
+    "axios": "^0.20.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.20",
     "nuxt": "^2.14.0"
   },
   "devDependencies": {
-    "@nuxtjs/color-mode": "^1.0.3",
     "@nuxtjs/tailwindcss": "^2.1.0",
-    "nodemon": "^2.0.4",
-    "tailwindcss-dark-mode": "^1.1.6"
+    "nodemon": "^2.0.4"
   }
 }

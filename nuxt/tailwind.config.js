@@ -6,22 +6,15 @@
 */
 module.exports = {
     theme: {
-        darkSelector: '.dark-mode'
+        fontFamily: {
+            'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen-Sans', 'Ubuntu', 'Cantarell', 'Helvetica Neue', 'sans-serif']
+        },
+        extend: {
+            colors: {
+                'blueribbon': '#0053F8'
+            }
+        }
     },
-    variants: {
-        backgroundColor: [
-            "dark",
-            "dark-hover",
-            "dark-group-hover",
-            "dark-even",
-            "dark-odd"
-        ],
-        borderColor: ["dark", "dark-focus", "dark-focus-within"],
-        textColor: ["dark", "dark-hover", "dark-active"]
-    },
-    plugins: [
-        require('tailwindcss-dark-mode')()
-    ],
     purge: {
         // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
         enabled: process.env.NODE_ENV === 'production',
@@ -32,7 +25,6 @@ module.exports = {
             'plugins/**/*.js',
             'nuxt.config.js'
         ],
-        whitelist: ['dark-mode']
     },
     future: {
         removeDeprecatedGapUtilities: true,
