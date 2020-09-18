@@ -43,7 +43,7 @@ export default {
 <style>
 .title a {
     &:hover {
-        @apply border-b-2 border-black;
+        @apply border-b border-black;
     }
 }
 
