@@ -87,7 +87,7 @@ export const actions = {
                 .map(({ id, date, slug, title, content, excerpt, categories, tags }) => {
 
                     // add the cateogories to each post
-                    if (_categories.length) {
+                    if (categories.length) {
                         _categories.forEach(category => {
                             let i = categories.indexOf(category.id)
                             if (i !== -1) {
@@ -97,7 +97,7 @@ export const actions = {
                     }
 
                     // add the tags to each post
-                    if (_tags.length) {
+                    if (tags.length) {
                         _tags.forEach(tag => {
                             let i = tags.indexOf(tag.id)
                             if (i !== -1) {
