@@ -1,3 +1,5 @@
 env/cloudflare.env
 env/db.env
 env/wordpress.env
+nginx/etc_letsencrypt.zip
+nginx/lib_letsencrypt.zip
