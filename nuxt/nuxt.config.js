@@ -1,3 +1,6 @@
+import webpack from 'webpack'
+import axios from 'axios'
+
 export default {
     /*
     ** Nuxt rendering mode
@@ -48,16 +51,56 @@ export default {
     */
     buildModules: [
         // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
-        '@nuxtjs/color-mode',
+        // '@nuxtjs/color-mode',
         '@nuxtjs/tailwindcss'
     ],
     /*
     ** Nuxt.js modules
     */
-    modules: [],
+    modules: [
+        '@nuxtjs/feed',
+        '@nuxtjs/dayjs'
+    ],
+    feed: [
+        {
+            path: '/rss.xml',
+            async create(feed) {
+                let author = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/users/1')
+                    .then(res => res.data)
+
+                feed.options = {
+                    title: author.name,
+                    link: 'https://ryanfreeman.dev/rss.xml',
+                    description: author.description
+                }
+
+                let posts = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/posts')
+                    .then(res => res.data)
+
+                posts = posts.filter(post => post.status === 'publish')
+                    .forEach(post => {
+                        feed.addItem({
+                            id: `https://ryanfreeman.dev/posts/${post.slug}`,
+                            title: post.title.rendered,
+                            link: `https://ryanfreeman.dev/posts/${post.slug}`,
+                            description: post.excerpt.rendered,
+                            content: post.content.rendered
+                        })
+                    });
+            },
+            catchTime: 1000 * 60 * 15,
+            type: 'rss2'
+        }
+    ],
     /*
     ** Build configuration
     ** See https://nuxtjs.org/api/configuration-build/
     */
-    build: {}
+    build: {
+        plugins: [
+            new webpack.ProvidePlugin({
+                _: 'lodash'
+            })
+        ]
+    }
 }
