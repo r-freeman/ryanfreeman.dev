@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar relative w-full lg:w-1/3">
-        <div class="p-10">
+        <div class="p-8 lg:p-10">
             <div class="author mb-6">
                 <nuxt-link :to="'/'" :title="author.name">
                     <img
