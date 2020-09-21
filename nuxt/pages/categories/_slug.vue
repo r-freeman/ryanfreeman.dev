@@ -1,7 +1,9 @@
 <template>
     <div class="lg:w-2/3">
         <main class="px-8 lg:p-10">
-            <h1 class="font-sans font-semibold text-4xl mb-8">{{ category.name }}</h1>
+            <h1
+                class="mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
+            >{{ category.name }}</h1>
             <Post v-for="post in posts" :key="post.id" :post="post" :show-category="false" />
         </main>
     </div>

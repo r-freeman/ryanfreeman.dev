@@ -1,21 +1,30 @@
 <template>
     <div>
-        <div class="absolute top-0 left-0 p-8 w-full text-center lg:text-left">
-            <nuxt-link
-                to="/"
-                class="text-base border border-gray-300 px-8 py-2 rounded-full leading-9 hover:text-blueribbon"
-            >All Posts</nuxt-link>
+        <nav class="absolute top-0 left-0 p-8 w-full text-center lg:text-left">
+            <Button button-text="All Posts" />
+        </nav>
+        <div class="px-8">
+            <main>
+                <h1
+                    class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
+                >{{ post.title.rendered }}</h1>
+                <section v-html="post.content.rendered"></section>
+            </main>
+            <!-- <nav v-if="tags.length" class="tags">
+                <Button
+                    v-for="tag in tags"
+                    :key="tag.id"
+                    :link="`/tags/${tag.slug}`"
+                    :text="tag.name"
+                />
+            </nav>-->
         </div>
-        <main v-if="post" class="px-8">
-            <h1
-                class="mt-24 lg:mt-16 mb-8 mx-auto text-4xl font-semibold leading-tight"
-            >{{ post.title.rendered }}</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum perferendis, nemo vitae delectus repellat porro. Libero eveniet quo asperiores ea.</p>
-        </main>
     </div>
 </template>
 
 <script>
+import { stripHtml } from "@/utils";
+
 export default {
     layout: "post",
     head() {
@@ -24,11 +33,7 @@ export default {
             meta: [
                 {
                     name: "description",
-                    content:
-                        this.post.excerpt.rendered.replace(
-                            /(<([^>]+)>)/gi,
-                            ""
-                        ) || "",
+                    content: stripHtml(this.post.excerpt.rendered) || "",
                     hid: "description",
                 },
             ],
@@ -46,12 +51,39 @@ export default {
         post() {
             return this.posts.find((post) => post.slug === this.slug);
         },
+        tags() {
+            return this.post.tags;
+        },
     },
 };
 </script>
 
 <style scoped>
-p {
-    @apply text-lg leading-7;
+>>> section p {
+    @apply mt-4 mb-6 text-base leading-relaxed;
+}
+
+>>> section h2 {
+    @apply mt-12 mb-4 font-semibold text-2xl antialiased;
+}
+
+>>> section figure {
+    @apply mt-4 mb-6;
+}
+
+>>> section figure figcaption {
+    @apply mt-2 text-sm text-mineshaft text-center italic;
+}
+
+>>> section figure img {
+    @apply w-full;
+}
+
+>>> section ul {
+    @apply list-disc mb-6 pl-5;
+}
+
+>>> section ul li {
+    @apply px-1 mb-2;
 }
 </style>
