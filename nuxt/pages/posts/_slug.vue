@@ -3,7 +3,7 @@
         <nav class="absolute top-0 left-0 p-8 w-full text-center lg:text-left">
             <Button button-text="All Posts" />
         </nav>
-        <div class="px-8">
+        <div class="mb-12 px-8 pb-8">
             <main>
                 <h1
                     class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
