@@ -12,7 +12,9 @@ module.exports = {
         extend: {
             colors: {
                 'blueribbon': '#0053F8',
-                'mineshaft': '#222222'
+                'mineshaft': '#222222',
+                'emperor': '#555555',
+                'dovegray': '#6f6f6f'
             }
         }
     },
