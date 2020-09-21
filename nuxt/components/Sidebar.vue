@@ -10,7 +10,7 @@
                     />
                 </nuxt-link>
                 <h1 class="name text-lg my-4 font-semibold font-sans antialiased">{{ author.name }}</h1>
-                <p class="bio leading-6 text-gray-700">{{ author.description }}</p>
+                <p class="bio text-emperor leading-relaxed">{{ author.description }}</p>
             </div>
             <nav class="mb-6">
                 <ul class="pages">
@@ -63,7 +63,7 @@
                     </li>
                 </ul>
             </nav>
-            <p class="text-sm text-gray-700">&copy; {{ year }} All rights reserved.</p>
+            <p class="text-sm text-dovegray">&copy; {{ year }} All rights reserved.</p>
         </div>
         <div class="divider absolute mt-6 top-0 right-0 invisible lg:visible"></div>
     </div>
@@ -95,7 +95,7 @@
 }
 
 .badge {
-    @apply border-2 border-gray-200 w-10 h-10 flex justify-center items-center rounded-full;
+    @apply border border-gray-300 w-10 h-10 flex justify-center items-center rounded-full;
 
     &:hover {
         @apply text-blueribbon;
