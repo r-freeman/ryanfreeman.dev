@@ -11,18 +11,26 @@
             >
                 <nuxt-link
                     :to="`/categories/${post.categories[0].slug}`"
+                    :title="`${post.categories[0].name}`"
                 >{{ post.categories[0].name }}</nuxt-link>
             </p>
         </div>
         <h2 class="title text-2xl font-sans font-semibold mb-3 antialiased">
-            <nuxt-link :to="`/posts/${post.slug}`" v-html="post.title.rendered"></nuxt-link>
+            <nuxt-link
+                :to="`/posts/${post.slug}`"
+                v-html="post.title.rendered"
+                :title="`${post.title.rendered}`"
+            ></nuxt-link>
         </h2>
         <div
             class="summary text-base font-sans leading-relaxed my-5"
             v-html="post.excerpt.rendered"
         ></div>
         <p class="readmore text-base font-sans text-blueribbon">
-            <nuxt-link :to="`/posts/${post.slug}`">Read &rarr;</nuxt-link>
+            <nuxt-link
+                :to="`/posts/${post.slug}`"
+                :title="`Read ${post.title.rendered}`"
+            >Read &rarr;</nuxt-link>
         </p>
     </article>
 </template>
