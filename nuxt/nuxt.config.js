@@ -61,7 +61,8 @@ export default {
     */
     modules: [
         '@nuxtjs/feed',
-        '@nuxtjs/dayjs'
+        '@nuxtjs/dayjs',
+        '@nuxtjs/sitemap',
     ],
     feed: [
         {
@@ -94,6 +95,36 @@ export default {
             type: 'rss2'
         }
     ],
+    sitemap: {
+        hostname: 'https://ryanfreeman.dev',
+        gzip: true,
+        defaults: {
+            changefreq: 'daily',
+            priority: 1,
+            lastmod: new Date()
+        },
+        routes: async () => {
+            let posts = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/posts')
+                .then(res => res.data)
+
+            posts = posts.filter(post => post.status === 'publish')
+                .map((post) => `/posts/${post.slug}`)
+
+            let pages = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/pages')
+                .then(res => res.data)
+
+            pages = pages.filter(page => page.slug !== 'posts')
+                .map((page) => `/pages/${page.slug}`)
+
+            let categories = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/categories')
+                .then(res => res.data)
+
+            categories = categories.filter(category => category.count > 0)
+                .map((category) => `/categories/${category.slug}`)
+
+            return posts.concat(pages).concat(categories)
+        }
+    },
     /*
     ** Build configuration
     ** See https://nuxtjs.org/api/configuration-build/
