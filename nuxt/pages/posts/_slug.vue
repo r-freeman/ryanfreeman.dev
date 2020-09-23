@@ -11,6 +11,13 @@
                     {{ post.title.rendered }}
                 </h1>
                 <section v-html="post.content.rendered"></section>
+                <p>
+                    <time
+                        class="datetime italic"
+                        :datetime="$dayjs(post.date).format('YYYY-MM-DD')"
+                        >Published {{ $dayjs().format("DD MMMM YYYY") }}</time
+                    >
+                </p>
             </main>
             <!-- <nav v-if="tags.length" class="tags">
                 <Button
@@ -61,6 +68,10 @@ export default {
 </script>
 
 <style scoped>
+main p {
+    @apply mt-4 mb-6;
+}
+
 >>> section p {
     @apply mt-4 mb-6 text-base leading-relaxed;
 }
