@@ -7,7 +7,9 @@
             <main>
                 <h1
                     class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
-                >{{ post.title.rendered }}</h1>
+                >
+                    {{ post.title.rendered }}
+                </h1>
                 <section v-html="post.content.rendered"></section>
             </main>
             <!-- <nav v-if="tags.length" class="tags">
@@ -72,7 +74,11 @@ export default {
 }
 
 >>> section figure figcaption {
-    @apply mt-2 text-sm text-mineshaft text-center italic;
+    @apply mt-2 text-sm text-mineshaft text-center italic break-words;
+}
+
+>>> section figure figcaption a {
+    @apply text-blueribbon;
 }
 
 >>> section figure img {
