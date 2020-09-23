@@ -4,7 +4,7 @@
             <h1
                 class="mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
             >{{ category.name }}</h1>
-            <Post v-for="post in posts" :key="post.id" :post="post" :show-category="false" />
+            <Post v-for="post in posts" :key="post.id" :post="post" />
         </main>
     </div>
 </template>
