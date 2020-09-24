@@ -3,7 +3,9 @@
         <main class="mb-12 px-8 pb-8 lg:p-10">
             <h1
                 class="mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
-            >{{ category.name }}</h1>
+            >
+                {{ category.name }}
+            </h1>
             <Post v-for="post in posts" :key="post.id" :post="post" />
         </main>
     </div>
@@ -17,7 +19,9 @@ export default {
             meta: [
                 {
                     name: "description",
-                    content: this.category.description,
+                    content:
+                        this.category.description ||
+                        `Posts in the ${this.category.name} category`,
                     hid: "description",
                 },
             ],
