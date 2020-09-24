@@ -1,8 +1,10 @@
 <template>
     <nuxt-link
         :to="buttonLink"
+        :title="buttonText"
         class="text-base border border-gray-300 px-8 py-2 rounded-full leading-9 hover:text-blueribbon"
-    >{{ buttonText }}</nuxt-link>
+        >{{ buttonText }}</nuxt-link
+    >
 </template>
 
 <script>
