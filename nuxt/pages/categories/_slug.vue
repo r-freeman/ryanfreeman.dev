@@ -42,8 +42,8 @@ export default {
             );
         },
         posts() {
-            return this.$store.state.wp.posts.filter(
-                (post) => post.categoryId === this.category.id
+            return this.$store.state.wp.posts.filter((post) =>
+                post.categories.includes(this.category)
             );
         },
     },

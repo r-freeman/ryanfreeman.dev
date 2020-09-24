@@ -79,17 +79,15 @@ export const actions = {
             let posts = await fetch('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/posts')
                 .then(res => res.json())
 
-            let categoryId,
-                _categories = await state.categories
+            let _categories = await state.categories
             let _tags = await state.tags
 
             posts = posts
                 .filter(post => post.status === "publish")
                 .map(({ id, date, slug, title, content, excerpt, categories, tags }) => {
 
-                    // add the cateogories to each post
+                    // add the categories to each post
                     if (categories.length) {
-                        categoryId = categories[0]
                         _categories.forEach(category => {
                             let i = categories.indexOf(category.id)
                             if (i !== -1) {
@@ -109,7 +107,7 @@ export const actions = {
                     }
 
                     return {
-                        id, date, slug, title, content, excerpt, categoryId, categories, tags
+                        id, date, slug, title, content, excerpt, categories, tags
                     }
                 })
 
