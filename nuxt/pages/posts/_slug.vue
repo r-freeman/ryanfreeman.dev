@@ -11,22 +11,36 @@
                     {{ post.title.rendered }}
                 </h1>
                 <section v-html="post.content.rendered"></section>
-                <p>
+                <p class="datetime">
                     <time
-                        class="datetime italic"
+                        class="italic"
                         :datetime="$dayjs(post.date).format('YYYY-MM-DD')"
                         >Published {{ $dayjs().format("DD MMMM YYYY") }}</time
                     >
                 </p>
             </main>
-            <!-- <nav v-if="tags.length" class="tags">
-                <Button
-                    v-for="tag in tags"
-                    :key="tag.id"
-                    :link="`/tags/${tag.slug}`"
-                    :text="tag.name"
-                />
-            </nav>-->
+            <nav v-if="tags.length" class="tags">
+                <ul>
+                    <li v-for="tag in tags" :key="tag.id">
+                        <Button
+                            :buttonLink="`/tags/${tag.slug}`"
+                            :buttonText="tag.name"
+                        />
+                    </li>
+                </ul>
+            </nav>
+            <section class="author">
+                <p>
+                    {{ author.description }}
+                    <a
+                        href="https://github.com/r-freeman/"
+                        :title="`${author.name} on GitHub`"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        ><span>{{ author.name }}</span> on GitHub</a
+                    >
+                </p>
+            </section>
         </div>
     </div>
 </template>
@@ -63,13 +77,40 @@ export default {
         tags() {
             return this.post.tags;
         },
+        author() {
+            return this.$store.state.wp.author;
+        },
     },
 };
 </script>
 
 <style scoped>
-main p {
-    @apply mt-4 mb-6;
+main .datetime {
+    @apply mt-8 mb-6;
+}
+
+nav ul {
+    @apply -ml-3;
+}
+
+nav ul li {
+    @apply inline-block m-3;
+}
+
+.author {
+    @apply pt-5 mt-6 border-t border-mercury;
+}
+
+.author p {
+    @apply pb-0;
+}
+
+.author p a {
+    @apply block text-blueribbon underline;
+}
+
+.author p a span {
+    @apply font-medium;
 }
 
 >>> section p {
