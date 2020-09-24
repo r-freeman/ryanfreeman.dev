@@ -40,7 +40,9 @@ export default {
             return this.tags.find((tag) => tag.slug === this.slug);
         },
         posts() {
-            return this.$store.state.wp.posts.filter((post) => {});
+            return this.$store.state.wp.posts.filter((post) =>
+                post.tags.includes(this.tag)
+            );
         },
     },
 };

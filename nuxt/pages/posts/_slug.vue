@@ -5,11 +5,13 @@
         </nav>
         <div class="mb-12 px-8 pb-8">
             <main>
-                <h1
-                    class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
-                >
-                    {{ post.title.rendered }}
-                </h1>
+                <header>
+                    <h1
+                        class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
+                    >
+                        {{ post.title.rendered }}
+                    </h1>
+                </header>
                 <section v-html="post.content.rendered"></section>
                 <p class="datetime">
                     <time
@@ -18,29 +20,29 @@
                         >Published {{ $dayjs().format("DD MMMM YYYY") }}</time
                     >
                 </p>
+                <nav v-if="tags.length" class="tags">
+                    <ul>
+                        <li v-for="tag in tags" :key="tag.id">
+                            <Button
+                                :buttonLink="`/tags/${tag.slug}`"
+                                :buttonText="tag.name"
+                            />
+                        </li>
+                    </ul>
+                </nav>
+                <section class="author">
+                    <p>
+                        {{ author.description }}
+                        <a
+                            href="https://github.com/r-freeman/"
+                            :title="`${author.name} on GitHub`"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            ><span>{{ author.name }}</span> on GitHub</a
+                        >
+                    </p>
+                </section>
             </main>
-            <nav v-if="tags.length" class="tags">
-                <ul>
-                    <li v-for="tag in tags" :key="tag.id">
-                        <Button
-                            :buttonLink="`/tags/${tag.slug}`"
-                            :buttonText="tag.name"
-                        />
-                    </li>
-                </ul>
-            </nav>
-            <section class="author">
-                <p>
-                    {{ author.description }}
-                    <a
-                        href="https://github.com/r-freeman/"
-                        :title="`${author.name} on GitHub`"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        ><span>{{ author.name }}</span> on GitHub</a
-                    >
-                </p>
-            </section>
         </div>
     </div>
 </template>
