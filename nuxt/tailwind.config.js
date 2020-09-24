@@ -14,7 +14,8 @@ module.exports = {
                 'blueribbon': '#0053F8',
                 'mineshaft': '#222222',
                 'emperor': '#555555',
-                'dovegray': '#6f6f6f'
+                'dovegray': '#6f6f6f',
+                'mercury': '#e6e6e6'
             }
         }
     },
