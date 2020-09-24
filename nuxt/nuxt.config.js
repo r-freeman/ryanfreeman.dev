@@ -123,7 +123,13 @@ export default {
             categories = categories.filter(category => category.count > 0)
                 .map((category) => `/categories/${category.slug}`)
 
-            return posts.concat(pages).concat(categories)
+            let tags = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/tags')
+                .then(res => res.data)
+
+            tags = tags.filter(tag => tag.count > 0)
+                .map((tag) => `/tags/${tag.slug}`)
+
+            return posts.concat(pages).concat(categories).concat(tags)
         }
     },
     /*
