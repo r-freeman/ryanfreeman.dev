@@ -148,7 +148,15 @@ nav ul li {
     @apply px-1 mb-2;
 }
 
->>> section pre {
-    @apply px-8 py-4 overflow-x-scroll;
+>>> section .code {
+    @apply -ml-8 -mr-8 border-0;
+
+    @screen md {
+        @apply mx-auto rounded-lg;
+    }
+}
+
+>>> section .code pre {
+    @apply px-8 py-4 overflow-x-auto;
 }
 </style>
