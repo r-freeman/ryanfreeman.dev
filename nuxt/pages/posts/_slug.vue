@@ -147,4 +147,8 @@ nav ul li {
 >>> section ul li {
     @apply px-1 mb-2;
 }
+
+>>> section pre {
+    @apply px-8 py-4 overflow-x-scroll;
+}
 </style>
