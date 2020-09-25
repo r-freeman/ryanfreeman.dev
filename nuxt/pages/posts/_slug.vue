@@ -7,7 +7,7 @@
             <main>
                 <header>
                     <h1
-                        class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
+                        class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-3xl md:text-5xl md:leading-tight antialiased text-center"
                     >
                         {{ post.title.rendered }}
                     </h1>
