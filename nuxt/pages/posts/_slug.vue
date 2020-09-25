@@ -17,7 +17,8 @@
                     <time
                         class="italic"
                         :datetime="$dayjs(post.date).format('YYYY-MM-DD')"
-                        >Published {{ $dayjs().format("DD MMMM YYYY") }}</time
+                        >Published
+                        {{ $dayjs(post.date).format("DD MMMM YYYY") }}</time
                     >
                 </p>
                 <nav v-if="tags.length" class="tags">
