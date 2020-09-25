@@ -3,19 +3,19 @@ import axios from 'axios'
 
 export default {
     /*
-    ** Nuxt rendering mode
-    ** See https://nuxtjs.org/api/configuration-mode
-    */
+     ** Nuxt rendering mode
+     ** See https://nuxtjs.org/api/configuration-mode
+     */
     mode: 'universal',
     /*
-    ** Nuxt target
-    ** See https://nuxtjs.org/api/configuration-target
-    */
+     ** Nuxt target
+     ** See https://nuxtjs.org/api/configuration-target
+     */
     target: 'server',
     /*
-    ** Headers of the page
-    ** See https://nuxtjs.org/api/configuration-head
-    */
+     ** Headers of the page
+     ** See https://nuxtjs.org/api/configuration-head
+     */
     head: {
         htmlAttrs: {
             lang: 'en'
@@ -34,68 +34,68 @@ export default {
         ]
     },
     /*
-    ** Global CSS
-    */
+     ** Global CSS
+     */
     css: [],
     /*
-    ** Plugins to load before mounting the App
-    ** https://nuxtjs.org/guide/plugins
-    */
+     ** Plugins to load before mounting the App
+     ** https://nuxtjs.org/guide/plugins
+     */
     plugins: [
         '@/plugins/dayjs.js'
     ],
     /*
-    ** Auto import components
-    ** See https://nuxtjs.org/api/configuration-components
-    */
+     ** Auto import components
+     ** See https://nuxtjs.org/api/configuration-components
+     */
     components: true,
     /*
-    ** Nuxt.js dev-modules
-    */
+     ** Nuxt.js dev-modules
+     */
     buildModules: [
         // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
         // '@nuxtjs/color-mode',
-        '@nuxtjs/tailwindcss'
+        '@nuxtjs/tailwindcss', ['@nuxtjs/google-analytics', {
+            id: 'UA-179036225-1'
+        }]
     ],
     /*
-    ** Nuxt.js modules
-    */
+     ** Nuxt.js modules
+     */
     modules: [
         '@nuxtjs/feed',
         '@nuxtjs/dayjs',
         '@nuxtjs/sitemap',
     ],
-    feed: [
-        {
-            path: '/rss.xml',
-            async create(feed) {
-                let author = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/users/1')
-                    .then(res => res.data)
+    feed: [{
+        path: '/rss.xml',
+        async create(feed) {
+            let author = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/users/1')
+                .then(res => res.data)
 
-                feed.options = {
-                    title: author.name,
-                    link: 'https://ryanfreeman.dev/rss.xml',
-                    description: author.description
-                }
+            feed.options = {
+                title: author.name,
+                link: 'https://ryanfreeman.dev/rss.xml',
+                description: author.description
+            }
 
-                let posts = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/posts')
-                    .then(res => res.data)
+            let posts = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/posts')
+                .then(res => res.data)
 
-                posts = posts.filter(post => post.status === 'publish')
-                    .forEach(post => {
-                        feed.addItem({
-                            id: `https://ryanfreeman.dev/posts/${post.slug}`,
-                            title: post.title.rendered,
-                            link: `https://ryanfreeman.dev/posts/${post.slug}`,
-                            description: post.excerpt.rendered,
-                            content: post.content.rendered
-                        })
-                    });
-            },
-            catchTime: 1000 * 60 * 15,
-            type: 'rss2'
-        }
-    ],
+            posts = posts.filter(post => post.status === 'publish')
+                .forEach(post => {
+                    feed.addItem({
+                        id: `https://ryanfreeman.dev/posts/${post.slug}`,
+                        title: post.title.rendered,
+                        link: `https://ryanfreeman.dev/posts/${post.slug}`,
+                        description: post.excerpt.rendered,
+                        content: post.content.rendered
+                    })
+                });
+        },
+        catchTime: 1000 * 60 * 15,
+        type: 'rss2'
+    }],
     sitemap: {
         hostname: 'https://ryanfreeman.dev',
         gzip: true,
@@ -104,7 +104,7 @@ export default {
             priority: 1,
             lastmod: new Date()
         },
-        routes: async () => {
+        routes: async() => {
             let posts = await axios.get('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/posts')
                 .then(res => res.data)
 
@@ -133,9 +133,9 @@ export default {
         }
     },
     /*
-    ** Build configuration
-    ** See https://nuxtjs.org/api/configuration-build/
-    */
+     ** Build configuration
+     ** See https://nuxtjs.org/api/configuration-build/
+     */
     build: {
         plugins: [
             new webpack.ProvidePlugin({
