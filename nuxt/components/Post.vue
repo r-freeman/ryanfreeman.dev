@@ -27,7 +27,7 @@
             </h2>
         </header>
         <div
-            class="summary text-base font-sans leading-relaxed my-5"
+            class="summary text-base font-sans leading-relaxed my-4"
             v-html="post.excerpt.rendered"
         ></div>
         <p class="readmore text-base font-sans text-blueribbon">

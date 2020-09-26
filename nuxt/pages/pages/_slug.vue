@@ -2,7 +2,7 @@
     <div class="lg:w-2/3">
         <main class="mb-12 px-8 pb-8 lg:p-10">
             <h1
-                class="mb-8 font-semibold font-sans text-4xl leading-tight antialiased"
+                class="mb-8 font-semibold font-sans text-3xl leading-tight antialiased"
             >{{ page.title.rendered }}</h1>
             <section v-html="page.content.rendered"></section>
         </main>
