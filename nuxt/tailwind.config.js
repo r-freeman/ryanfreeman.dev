@@ -1,9 +1,9 @@
 /*
-** TailwindCSS Configuration File
-**
-** Docs: https://tailwindcss.com/docs/configuration
-** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
-*/
+ ** TailwindCSS Configuration File
+ **
+ ** Docs: https://tailwindcss.com/docs/configuration
+ ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
+ */
 module.exports = {
     theme: {
         fontFamily: {
@@ -15,7 +15,9 @@ module.exports = {
                 'mineshaft': '#222222',
                 'emperor': '#555555',
                 'dovegray': '#6f6f6f',
-                'mercury': '#e6e6e6'
+                'mercury': '#e6e6e6',
+                'heavymetal': '#23241F',
+                'springwood': '#F8F8F2'
             }
         }
     },

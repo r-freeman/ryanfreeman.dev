@@ -88,6 +88,8 @@ export default {
 </script>
 
 <style scoped>
+@import "@/assets/css/monokai-sublime.css";
+
 main .datetime {
     @apply mt-8 mb-6;
 }
@@ -149,7 +151,7 @@ nav ul li {
 }
 
 >>> section .code {
-    @apply -ml-8 -mr-8 border-0;
+    @apply block -ml-8 -mr-8 mt-4 mb-6 border-0 bg-heavymetal text-springwood;
 
     @screen md {
         @apply mx-auto rounded-lg;
