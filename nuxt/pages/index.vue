@@ -8,6 +8,7 @@
 
 <script>
 export default {
+    transition: "page",
     head() {
         return {
             meta: [
@@ -26,3 +27,14 @@ export default {
     },
 };
 </script>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+    @apply transition-opacity duration-300;
+}
+.page-enter,
+.page-leave-active {
+    @apply opacity-0;
+}
+</style>
