@@ -122,6 +122,14 @@ nav ul li {
     @apply mt-4 mb-6 text-base leading-relaxed;
 }
 
+>>> section p a {
+    @apply text-blueribbon;
+
+    &:hover {
+        @apply underline;
+    }
+}
+
 >>> section h2 {
     @apply mt-12 mb-4 relative font-semibold text-2xl antialiased;
 }
