@@ -5,7 +5,7 @@
                 <nuxt-link :to="'/'" :title="author.name">
                     <img
                         class="object-cover w-20 h-20 rounded-full"
-                        :src="author.simple_local_avatar.full"
+                        :src="author.simple_local_avatar['64']"
                         :alt="author.name"
                     />
                 </nuxt-link>
@@ -30,7 +30,7 @@
                 </ul>
             </nav>
             <nav class="mb-6">
-                <ul class="inline-flex flex-wrap">
+                <ul class="inline-flex flex-wrap -ml-1">
                     <li class="m-1">
                         <a
                             class="badge"
