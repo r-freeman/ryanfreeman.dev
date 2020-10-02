@@ -1,6 +1,6 @@
 export const actions = {
     // populate the vuex store from the server
-    async nuxtServerInit({dispatch}) {
+    async nuxtServerInit({ dispatch }) {
         await dispatch("wp/getAuthor")
         await dispatch("wp/getCategories")
         await dispatch("wp/getTags")
