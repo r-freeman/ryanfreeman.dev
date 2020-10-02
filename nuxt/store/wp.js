@@ -29,7 +29,7 @@ export const actions = {
         if (state.author.length) return
 
         try {
-            let { id, name, description, simple_local_avatar } = await fetch('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/users/1?_fields=id,name,description,simple_local_avatar')
+            let { id, name, description, simple_local_avatar } = await fetch('http://localhost:3000/api/users/1?_fields=id,name,description,simple_local_avatar')
                 .then(res => res.json())
 
             commit("updateAuthor", { id, name, description, simple_local_avatar })
@@ -42,7 +42,7 @@ export const actions = {
         if (state.categories.length) return
 
         try {
-            let categories = await fetch('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/categories?_fields=id,name,description,slug,count')
+            let categories = await fetch('http://localhost:3000/api/categories?_fields=id,name,description,slug,count')
                 .then(res => res.json())
 
             categories = categories
@@ -59,7 +59,7 @@ export const actions = {
         if (state.tags.length) return
 
         try {
-            let tags = await fetch('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/tags?_fields=id,name,description,slug,count')
+            let tags = await fetch('http://localhost:3000/api/tags?_fields=id,name,description,slug,count')
                 .then(res => res.json())
 
             tags = tags
@@ -76,7 +76,7 @@ export const actions = {
         if (state.posts.length) return
 
         try {
-            let posts = await fetch('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/posts?_fields=id,date,slug,title,content,excerpt,status,categories,tags')
+            let posts = await fetch('http://localhost:3000/api/posts?_fields=id,date,slug,title,content,excerpt,status,categories,tags')
                 .then(res => res.json())
 
             posts = posts
@@ -123,7 +123,7 @@ export const actions = {
         if (state.pages.length) return
 
         try {
-            let pages = await fetch('https://ryanfreeman.dev/wordpress/wp-json/wp/v2/pages?_fields=id,data,slug,link,title,content,excerpt,menu_order,status')
+            let pages = await fetch('http://localhost:3000/api/pages?_fields=id,data,slug,link,title,content,excerpt,menu_order,status')
                 .then(res => res.json())
 
             pages = pages

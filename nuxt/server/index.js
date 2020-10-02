@@ -6,9 +6,11 @@ const port = process.env.PORT || 3000
 async function start() {
     const nuxt = await loadNuxt(isDev ? 'dev' : 'start')
 
+    app.use('/api', require('./api/proxy.js'))
+
     app.use(nuxt.render)
 
-    if(isDev) {
+    if (isDev) {
         build(nuxt)
     }
 
