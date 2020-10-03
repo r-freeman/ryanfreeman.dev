@@ -42,7 +42,8 @@ export default {
      ** https://nuxtjs.org/guide/plugins
      */
     plugins: [
-        '@/plugins/dayjs.js'
+        '@/plugins/dayjs.js',
+        '@/plugins/api.js'
     ],
     /*
      ** Auto import components
@@ -63,6 +64,7 @@ export default {
      ** Nuxt.js modules
      */
     modules: [
+        '@nuxtjs/axios',
         '@nuxtjs/feed',
         '@nuxtjs/dayjs',
         '@nuxtjs/sitemap',

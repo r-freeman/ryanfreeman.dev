@@ -2,7 +2,7 @@ const cachios = require('cachios')
 const express = require('express')
 const router = express.Router()
 
-const endpoint = 'https://ryanfreeman.dev/wordpress/wp-json/wp/v2'
+const WORDPRESS_API = 'https://ryanfreeman.dev/wordpress/wp-json/wp/v2'
 
 cachios.getResponseCopy = ({ status, headers, data }) => {
     return {
@@ -12,10 +12,12 @@ cachios.getResponseCopy = ({ status, headers, data }) => {
     }
 }
 
+// requests to /api are proxied through to wordpress and cached
 router.get('*', async(req, res) => {
-    const url = endpoint + req.originalUrl.replace('/api', '')
+    const url = WORDPRESS_API + req.originalUrl.replace('/api', '')
 
     cachios.get(url, {
+        // cache for one hour
         ttl: 3600
     }).then(r => {
         res.set('x-wp-total', r.headers['x-wp-total'])
