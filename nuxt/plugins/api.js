@@ -12,28 +12,94 @@ export default ({ $axios }, inject) => {
     })
 
     const getData = async(url) => {
-        return await api.get(url).then(res => res.data)
-            .catch(e => console.log(e))
+        try {
+            return await api.get(url)
+                .then(res => res.data)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
-    api.getAuthor = () => {
-        return getData(AUTHOR)
+    api.getAuthor = async() => {
+        let { id, name, description, simple_local_avatar } = await getData(AUTHOR)
+
+        return {
+            id,
+            name,
+            description,
+            simple_local_avatar
+        }
     }
 
-    api.getCategories = () => {
-        return getData(CATEGORIES)
+    api.getCategories = async() => {
+        let categories = await getData(CATEGORIES)
+
+        categories = categories
+            .filter(({ count }) => count > 0)
+            .map(({ id, name, description, slug }) => ({ id, name, description, slug }))
+
+        return categories
     }
 
-    api.getTags = () => {
-        return getData(TAGS)
+    api.getTags = async() => {
+        let tags = await getData(TAGS)
+
+        tags = tags
+            .filter(({ count }) => count > 0)
+            .map(({ id, name, description, slug }) => ({ id, name, description, slug }))
+
+        return tags
     }
 
-    api.getPosts = () => {
-        return getData(POSTS)
+    api.getPosts = async(_categories, _tags) => {
+        let posts = await getData(POSTS)
+
+        posts = posts
+            .filter(({ status }) => status === "publish")
+            .map(({ id, date, slug, title, content, excerpt, categories, tags }) => {
+                // add the categories to each post
+                if (categories.length) {
+                    _categories.forEach(category => {
+                        let i = categories.indexOf(category.id)
+                        if (i !== -1) {
+                            categories.splice(i, 1, category)
+                        }
+                    })
+                }
+
+                // add the tags to each post
+                if (tags.length) {
+                    _tags.forEach(tag => {
+                        let i = tags.indexOf(tag.id)
+                        if (i !== -1) {
+                            tags.splice(i, 1, tag)
+                        }
+                    })
+                }
+
+                return {
+                    id,
+                    date,
+                    slug,
+                    title,
+                    content,
+                    excerpt,
+                    categories,
+                    tags
+                }
+            })
+
+        return posts
     }
 
-    api.getPages = () => {
-        return getData(PAGES)
+    api.getPages = async() => {
+        let pages = await getData(PAGES)
+
+        pages = pages
+            .filter(({ status }) => status === "publish")
+            .map(({ id, date, slug, link, title, content, excerpt, menu_order }) => ({ id, date, slug, link, title, content, excerpt, menu_order }))
+
+        return pages
     }
 
     inject('api', api)
