@@ -7,7 +7,7 @@
             <main>
                 <header>
                     <h1
-                        class="mt-24 lg:mt-16 mb-8 font-semibold font-sans text-3xl md:text-5xl md:leading-tight antialiased text-center"
+                        class="mt-24 mb-8 md:mb-12 font-semibold font-sans text-3xl md:text-5xl md:leading-tight antialiased text-center"
                     >
                         {{ post.title.rendered }}
                     </h1>
@@ -170,7 +170,7 @@ nav ul li {
 }
 
 >>> section .code {
-    @apply block -ml-8 -mr-8 mt-4 mb-6 border-0 bg-heavymetal text-springwood;
+    @apply block -ml-8 -mr-8 mt-4 mb-6 border-0 bg-mineshaft;
 
     @screen md {
         @apply mx-auto rounded-lg;
@@ -179,5 +179,9 @@ nav ul li {
 
 >>> section .code pre {
     @apply px-8 py-4 overflow-x-auto;
+
+    @screen md {
+        @apply px-4;
+    }
 }
 </style>
