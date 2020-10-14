@@ -4,8 +4,19 @@ This repository contains the source code for my personal website. The website is
 
 ## Architecture
 
-The project is made up of five Docker containers, with each container fulfilling a role.
+The project uses five Docker images that are compatible with the Raspberry Pi ARM architecture.
 
-### [CloudFlare DynDNS](https://hub.docker.com/r/oznu/cloudflare-ddns)
+### [oznu/cloudflare-ddns](https://hub.docker.com/r/oznu/cloudflare-ddns)
 
 Since I'm using a residential IP address, this container is responsible for keeping the DNS records on the domain name up-to-date.
+
+### [hypriot/rpi-mysql](https://hub.docker.com/r/hypriot/rpi-mysql)
+
+Raspberry Pi compatible Docker image with MySQL for the WordPress website.
+
+### [nginx](https://hub.docker.com/_/nginx)
+
+Nginx is used as a reverse proxy which routes requests to either the Node/Express server hosting a Nuxt (Vue.js) application or the WordPress website.
+
+### [node](https://hub.docker.com/_/node)
+
