@@ -22,6 +22,6 @@ Nginx is used as a reverse proxy which routes requests to either the Node/Expres
 
 Node application which contains an Express server and the frontend of the application created with Nuxt.
 
-### [https://hub.docker.com/_/wordpress](https://hub.docker.com/_/wordpress)
+### [wordpress](https://hub.docker.com/_/wordpress)
 
 Lastly, the WordPress container functions as a rich content editor and headless CMS.
