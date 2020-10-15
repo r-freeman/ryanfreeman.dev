@@ -31,7 +31,7 @@ export default {
 <style>
 .page-enter-active,
 .page-leave-active {
-    @apply transition-opacity duration-300;
+    @apply transition-opacity duration-200;
 }
 .page-enter,
 .page-leave-active {

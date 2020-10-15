@@ -13,7 +13,7 @@ export default {
 <style>
 .layout-enter-active,
 .layout-leave-active {
-    @apply transition-opacity duration-300;
+    @apply transition-opacity duration-200;
 }
 .layout-enter,
 .layout-leave-active {
