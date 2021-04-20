@@ -59,6 +59,10 @@ export default {
 }
 
 
+>>> section figure {
+    @apply mt-4 mb-6;
+}
+
 >>> section figure figcaption {
     @apply mt-2 text-sm italic text-emperor;
 }
