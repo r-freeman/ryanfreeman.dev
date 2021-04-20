@@ -57,4 +57,9 @@ export default {
 >>> section h2 {
     @apply mt-12 mb-4 font-semibold text-2xl antialiased;
 }
+
+
+>>> section figure figcaption {
+    @apply mt-2 text-sm italic text-emperor;
+}
 </style>
