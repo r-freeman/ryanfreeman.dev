@@ -3,7 +3,7 @@ const BASE_URL = 'http://localhost:3000/api/',
     CATEGORIES = 'categories?_fields=id,name,description,slug,count',
     TAGS = 'tags?_fields=id,name,description,slug,count',
     POSTS = 'posts?_fields=id,date,slug,title,content,excerpt,status,categories,tags',
-    PAGES = 'pages?_fields=id,data,slug,link,title,content,excerpt,menu_order,status'
+    PAGES = 'pages?_fields=id,data,slug,link,title,content,excerpt,menu_order,status,acf'
 
 
 export default ({ $axios }, inject) => {
@@ -97,7 +97,7 @@ export default ({ $axios }, inject) => {
 
         pages = pages
             .filter(({ status }) => status === "publish")
-            .map(({ id, date, slug, link, title, content, excerpt, menu_order }) => ({ id, date, slug, link, title, content, excerpt, menu_order }))
+            .map(({ id, date, slug, link, title, content, excerpt, menu_order, acf }) => ({ id, date, slug, link, title, content, excerpt, menu_order, acf }))
 
         return pages
     }

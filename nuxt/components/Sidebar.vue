@@ -20,7 +20,7 @@
             </div>
             <nav class="mb-6">
                 <ul class="pages">
-                    <li class="my-3" v-for="page in sortedPages" :key="page.id">
+                    <li class="my-3" v-for="page in sortedPages" :key="page.id" v-if="!page.acf.hide_sidebar">
                         <nuxt-link
                             :to="`${page.link}`"
                             :title="page.title.rendered"
